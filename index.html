@@ -131,7 +131,15 @@
         }
 
         setInterval(function () {
-            setCountdown();
+            let dateString = "";
+            let today = new Date();
+            let endGoal = new Date('06/30/2022');
+            var dateElement = document.getElementById("countdown");
+            var days = Math.floor((endGoal - today) / (1000 * 60 * 60 * 24));
+            var hours = 23 - today.getHours();
+            var seconds = 59 - today.getSeconds();
+            dateElement.innerHTML =
+                `<div>${days}</div> <div>${hours}</div><div>${beforeMidnight() - (60*hours)}</div><div>${seconds}</div>`;
         }, 1000);
 
         confetti.start()
