@@ -50,7 +50,7 @@
             font-size: 40px;
         }
 
-        .explainer {
+        #explainer {
             font-size: 20px;
             margin-top: 10px;
         }
@@ -67,25 +67,26 @@
             .explainer {
                 font-size: 30px;
             }
-            .countdown{
+
+            .countdown {
                 width: unset;
             }
-        } 
+        }
     </style>
 </head>
 
 <body>
-    <div class="countdown-holder">
+    <div id="holder" class="countdown-holder">
         <div id="confetti"></div>
         <div class="countdown">
-            <div class="grid-row">
+            <div id="labels" class="grid-row">
                 <div>Days</div>
                 <div>Hours</div>
                 <div>Minutes</div>
                 <div>Seconds</div>
             </div>
             <div id="countdown" class="grid-row"></div>
-            <div class="explainer">Until Dad's Retirement Day!</div>
+            <div id="explainer">Until Dad's Retirement Day!</div>
         </div>
     </div>
     <script src="https://www.wpromotions.eu/confetti.min.js"></script>
@@ -97,7 +98,15 @@
             return Math.floor((mid - ts) / 60000);
         }
 
-        setInterval(function () {
+        function inIframe() {
+            try {
+                return window.self !== window.top;
+            } catch (e) {
+                return true;
+            }
+        }
+
+        function setCountdown() {
             let dateString = "";
             let today = new Date();
             let endGoal = new Date('06/30/2022');
@@ -107,7 +116,22 @@
             var seconds = 59 - today.getSeconds();
             dateElement.innerHTML =
                 `<div>${days}</div> <div>${hours}</div><div>${beforeMidnight() - (60*hours)}</div><div>${seconds}</div>`;
-        }, 1000);
+        }
+
+
+        setCountdown();
+
+        if (inIframe()) {
+            let countdown = document.getElementById("countdown");
+            countdown.style.fontSize = "120px";
+            let explainer = document.getElementById("explainer");
+            explainer.style.fontSize = "55px";
+            let labels = document.getElementById("labels");
+            labels.style.fontSize = "35px";
+        }
+
+        setInterval(setCountdown(), 1000);
+        
         confetti.start()
     </script>
 </body>
