@@ -41,6 +41,7 @@
             box-shadow: #01039e 1px 1px 6px;
             /* height: 40vh;
             width: 50vw; */
+            width: 95%;
         }
 
         .grid-row {
@@ -51,11 +52,11 @@
         }
 
         #countdown {
-            font-size: 6rem;
+            font-size: 4rem;
         }
 
         .explainer {
-            font-size: 3rem;
+            font-size: 2rem;
             margin-top: 1rem;
         }
 
@@ -63,20 +64,16 @@
             z-index: 1 !important;
         }
 
-        @media screen and (max-width: 600px) {
+        @media screen and (min-width: 1000px) {
             #countdown {
-                font-size: 4rem;
-            }
-
-            .grid-row{
-                font-size: 1.5rem;
+                font-size: 6rem;
             }
 
             .explainer {
-                font-size: 2rem;
+                font-size: 3rem;
             }
             .countdown{
-                width: 95%;
+                width: unset;
             }
         } 
     </style>
