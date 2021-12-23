@@ -130,8 +130,10 @@
             labels.style.fontSize = "35px";
         }
 
-        setInterval(setCountdown(), 1000);
-        
+        setInterval(function () {
+            setCountdown();
+        }, 1000);
+
         confetti.start()
     </script>
 </body>
